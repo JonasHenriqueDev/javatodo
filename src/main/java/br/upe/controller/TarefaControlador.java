@@ -26,6 +26,12 @@ public class TarefaControlador {
         tarefaTableModel.setExibirFinalizadas(exibir);
     }
 
+    public void pesquisarTarefas(String termoBusca) {
+        tarefaTableModel.filtrarTarefas(termoBusca);
+    }
+
+
+
 
     //Getter e Setters
 

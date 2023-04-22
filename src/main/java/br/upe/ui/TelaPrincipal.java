@@ -5,11 +5,6 @@ import br.upe.model.Tarefa;
 import br.upe.model.TarefaTableModel;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +15,8 @@ public class TelaPrincipal {
     private JPanel pnlAdicionar;
     private JTable tblTarefas;
     private JCheckBox chkExibirFinalizadas;
+    private JTextField txtPesquisa;
+    private JButton btnPesquisar;
 
     private List<Tarefa> tarefas;
 
@@ -35,6 +32,10 @@ public class TelaPrincipal {
         chkExibirFinalizadas.addActionListener(e -> {
             boolean selecionado = ((JCheckBox) e.getSource()).isSelected();
             controlador.exibirFinalizadas(selecionado);
+        });
+        btnPesquisar.addActionListener(e -> {
+            controlador.pesquisarTarefas(txtPesquisa.getText());
+
         });
     }
 

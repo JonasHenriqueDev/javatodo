@@ -9,8 +9,10 @@ import java.util.Vector;
 public class TarefaTableModel extends AbstractTableModel {
     private List<Tarefa> tarefasFinalizadas;
     private List<Tarefa> tarefasAtivas;
+    private List<Tarefa> tarefasFiltradas;
 
     private boolean exibirFinalizadas;
+    private String termoBusca;
 
     public TarefaTableModel() {
         tarefasAtivas = new ArrayList<>();
@@ -79,6 +81,16 @@ public class TarefaTableModel extends AbstractTableModel {
         }
         this.fireTableDataChanged();
     }
+    public void filtrarTarefas(String termoBusca) {
+        this.tarefasFiltradas = new ArrayList<>();
+        for (Tarefa tarefa : tarefasAtivas) {
+            if (tarefa.getDescricao().contains(termoBusca)) {
+                this.tarefasFiltradas.add(tarefa);
+            }
+        }
+        this.tarefasAtivas = this.tarefasFiltradas;
+        this.fireTableDataChanged();
+    }
 
     public List<Tarefa> getTarefasFinalizadas() {
         return tarefasFinalizadas;
@@ -98,6 +110,14 @@ public class TarefaTableModel extends AbstractTableModel {
 
     public boolean isExibirFinalizadas() {
         return exibirFinalizadas;
+    }
+
+    public List<Tarefa> getTarefasFiltradas(){
+        return tarefasFiltradas;
+    }
+
+    public void setTermoBusca(String termoBusca) {
+        this.termoBusca = termoBusca;
     }
 
 }
