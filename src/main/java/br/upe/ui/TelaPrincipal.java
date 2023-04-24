@@ -15,7 +15,6 @@ public class TelaPrincipal {
     private JPanel pnlAdicionar;
     private JTable tblTarefas;
     private JCheckBox chkExibirFinalizadas;
-    private JTextField txtPesquisa;
     private JButton btnPesquisar;
 
     private List<Tarefa> tarefas;
@@ -34,7 +33,7 @@ public class TelaPrincipal {
             controlador.exibirFinalizadas(selecionado);
         });
         btnPesquisar.addActionListener(e -> {
-            controlador.pesquisarTarefas(txtPesquisa.getText());
+            controlador.pesquisarTarefas(txtDescricaoTarefa.getText());
 
         });
 

@@ -84,7 +84,7 @@ public class TarefaTableModel extends AbstractTableModel {
     public void filtrarTarefas(String termoBusca) {
         this.tarefasFiltradas = new ArrayList<>();
         if (!termoBusca.equals("")) {
-            for (Tarefa tarefa : tarefasAtivas) {
+            for (Tarefa tarefa : ativasCopy) {
                 if (tarefa.getDescricao().contains(termoBusca)) {
                     this.tarefasFiltradas.add(tarefa);
                 }
@@ -93,16 +93,6 @@ public class TarefaTableModel extends AbstractTableModel {
         } else {
             this.tarefasAtivas = this.ativasCopy;
         }
-
-        /*
-        for (Tarefa tarefa : tarefasAtivas) {
-            if (!tarefa.getDescricao().contains(termoBusca)) {
-                this.tarefasAtivas.removeAll(this.tarefasFiltradas);
-                this.tarefasAtivas.addAll(ativasCopy);
-            }
-        }
-
-         */
         this.fireTableDataChanged();
     }
 
