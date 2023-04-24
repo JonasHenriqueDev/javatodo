@@ -37,6 +37,7 @@ public class TelaPrincipal {
             controlador.pesquisarTarefas(txtPesquisa.getText());
 
         });
+
     }
 
     private void adicionarTarefa(String texto) {

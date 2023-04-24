@@ -1,15 +1,13 @@
 package br.upe.model;
 
 import javax.swing.table.AbstractTableModel;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Vector;
+import java.util.*;
 
 public class TarefaTableModel extends AbstractTableModel {
     private List<Tarefa> tarefasFinalizadas;
     private List<Tarefa> tarefasAtivas;
     private List<Tarefa> tarefasFiltradas;
+    private List<Tarefa> ativasCopy;
 
     private boolean exibirFinalizadas;
     private String termoBusca;
@@ -17,6 +15,8 @@ public class TarefaTableModel extends AbstractTableModel {
     public TarefaTableModel() {
         tarefasAtivas = new ArrayList<>();
         tarefasFinalizadas = new ArrayList<>();
+        ativasCopy = new ArrayList<>();
+
     }
 
     @Override
@@ -83,12 +83,26 @@ public class TarefaTableModel extends AbstractTableModel {
     }
     public void filtrarTarefas(String termoBusca) {
         this.tarefasFiltradas = new ArrayList<>();
+        if (!termoBusca.equals("")) {
+            for (Tarefa tarefa : tarefasAtivas) {
+                if (tarefa.getDescricao().contains(termoBusca)) {
+                    this.tarefasFiltradas.add(tarefa);
+                }
+            }
+            this.tarefasAtivas = this.tarefasFiltradas;
+        } else {
+            this.tarefasAtivas = this.ativasCopy;
+        }
+
+        /*
         for (Tarefa tarefa : tarefasAtivas) {
-            if (tarefa.getDescricao().contains(termoBusca)) {
-                this.tarefasFiltradas.add(tarefa);
+            if (!tarefa.getDescricao().contains(termoBusca)) {
+                this.tarefasAtivas.removeAll(this.tarefasFiltradas);
+                this.tarefasAtivas.addAll(ativasCopy);
             }
         }
-        this.tarefasAtivas = this.tarefasFiltradas;
+
+         */
         this.fireTableDataChanged();
     }
 
@@ -102,6 +116,10 @@ public class TarefaTableModel extends AbstractTableModel {
 
     public List<Tarefa> getTarefasAtivas() {
         return tarefasAtivas;
+    }
+
+    public List<Tarefa> getAtivasCopy() {
+        return ativasCopy;
     }
 
     public void setTarefasAtivas(List<Tarefa> tarefasAtivas) {
