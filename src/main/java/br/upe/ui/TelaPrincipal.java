@@ -5,6 +5,8 @@ import br.upe.model.Tarefa;
 import br.upe.model.TarefaTableModel;
 
 import javax.swing.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,9 +34,26 @@ public class TelaPrincipal {
             boolean selecionado = ((JCheckBox) e.getSource()).isSelected();
             controlador.exibirFinalizadas(selecionado);
         });
+
+        // botão para fazer a pesquisa chamando o método .pesquisarTarefas do controlador
         btnPesquisar.addActionListener(e -> {
             controlador.pesquisarTarefas(txtDescricaoTarefa.getText());
 
+        });
+        txtDescricaoTarefa.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            // fazer a pesquisa quando a tecla Enter é pressionada e solta
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == 10)
+                    controlador.pesquisarTarefas(txtDescricaoTarefa.getText());
+            }
         });
 
     }

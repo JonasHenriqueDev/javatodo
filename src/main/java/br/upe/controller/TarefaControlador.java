@@ -20,6 +20,7 @@ public class TarefaControlador {
     //Metodos de negocio
     public void adicionarTarefaAtiva(Tarefa tarefa) {
         this.tarefaTableModel.getTarefasAtivas().add(tarefa);
+        //cópia das tarefas ativas para que possam ser acessadas depois da alteração na lista original
         this.tarefaTableModel.getAtivasCopy().add(tarefa);
     }
 

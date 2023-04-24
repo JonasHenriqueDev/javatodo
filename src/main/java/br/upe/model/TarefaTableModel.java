@@ -6,17 +6,19 @@ import java.util.*;
 public class TarefaTableModel extends AbstractTableModel {
     private List<Tarefa> tarefasFinalizadas;
     private List<Tarefa> tarefasAtivas;
-    private List<Tarefa> tarefasFiltradas;
-    private List<Tarefa> ativasCopy;
 
+    //lista para as tarefas filtradas
+    private List<Tarefa> tarefasFiltradas;
+
+    //cópia da lista das tarefas ativas
+    private List<Tarefa> ativasCopy;
     private boolean exibirFinalizadas;
-    private String termoBusca;
+
 
     public TarefaTableModel() {
         tarefasAtivas = new ArrayList<>();
         tarefasFinalizadas = new ArrayList<>();
         ativasCopy = new ArrayList<>();
-
     }
 
     @Override
@@ -81,6 +83,14 @@ public class TarefaTableModel extends AbstractTableModel {
         }
         this.fireTableDataChanged();
     }
+
+    //método que filtra as tarefas através de um for, onde verifica cada tarefa ativa pelo seu atributo de descrição e,
+    //caso contenha o termo contido no JTextField, adiciona as tarefas na lista de tarefas filtradas, substituindo a
+    //lista de tarefas ativas original
+
+    //o método busca pelas tarefas ativas na lista ativasCopy, pois, após uma primeira alteração, a lista ativas é
+    // alterada, removendo os termos que não atendem ao parâmetro do if
+
     public void filtrarTarefas(String termoBusca) {
         this.tarefasFiltradas = new ArrayList<>();
         if (!termoBusca.equals("")) {
@@ -124,8 +134,5 @@ public class TarefaTableModel extends AbstractTableModel {
         return tarefasFiltradas;
     }
 
-    public void setTermoBusca(String termoBusca) {
-        this.termoBusca = termoBusca;
-    }
 
 }
