@@ -11,6 +11,8 @@ public class Main {
         JFrame frame = new JFrame("ToDo");
         frame.setContentPane(pnlMain.getPnlMain());
         frame.pack();
+        frame.setSize(500, 300);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
