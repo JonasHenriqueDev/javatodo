@@ -189,6 +189,7 @@ public class TelaPrincipal {
         tblTarefas.revalidate();
         tblTarefas.repaint();
         controlador.limparPesquisa();
+        txtPesquisa.setText("");
     }
 
     private void pesquisarTarefa(String campoBusca) {
