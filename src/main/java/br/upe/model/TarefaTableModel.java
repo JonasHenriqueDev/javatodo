@@ -106,6 +106,15 @@ public class TarefaTableModel extends AbstractTableModel {
         this.fireTableDataChanged();
     }
 
+    public void limparFiltradas() {
+        for (Tarefa tarefa : ativasCopy) {
+            if (!tarefasAtivas.contains(tarefa)) {
+                tarefasAtivas.add(tarefa);
+            }
+        }
+        this.fireTableDataChanged();
+    }
+
     public List<Tarefa> getTarefasFinalizadas() {
         return tarefasFinalizadas;
     }

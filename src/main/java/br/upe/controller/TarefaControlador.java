@@ -24,6 +24,10 @@ public class TarefaControlador {
         this.tarefaTableModel.getAtivasCopy().add(tarefa);
     }
 
+    public void limparPesquisa() {
+        this.tarefaTableModel.limparFiltradas();
+    }
+
     public void exibirFinalizadas(boolean exibir) {
         tarefaTableModel.setExibirFinalizadas(exibir);
     }
