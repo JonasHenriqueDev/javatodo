@@ -4,7 +4,8 @@ import br.upe.ui.TelaPrincipal;
 
 import javax.swing.*;
 
-public class Main {
+public class
+Main {
     public static void main(String[] args) {
         TelaPrincipal pnlMain = new TelaPrincipal();
 
